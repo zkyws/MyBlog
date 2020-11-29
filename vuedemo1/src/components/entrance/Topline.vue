@@ -1,49 +1,43 @@
 <template>
   <div class="user-name">
-    <div style="margin-left: 150px; display: flex; justify-content: flex-start; align-items: center">
-      <div style="margin-right: 20px">
-        <span>QCZH</span>
+      <div style="margin-right: 150px; margin-left: 20px; display: flex; align-items: center">
+        <my-picture width="50" height="40"></my-picture>
+        <span style="margin-left: 5px;">Zhangs.space</span>
       </div>
-      <div style="height: 50px">
+      <div style="height: 50px; margin-right: 20px">
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-          <el-submenu index="2">
+          <el-submenu index="show">
             <template slot="title">Show</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项1</el-menu-item>
-              <el-menu-item index="2-4-2">选项2</el-menu-item>
-              <el-menu-item index="2-4-3">选项3</el-menu-item>
-            </el-submenu>
+            <el-menu-item index="normal">normal</el-menu-item>
+            <el-menu-item index="animation">animation</el-menu-item>
+            <el-menu-item index="" disabled>developing</el-menu-item>
           </el-submenu>
-          <el-menu-item index="1">Study notes</el-menu-item>
-          <el-menu-item index="3" disabled>developing</el-menu-item>
-          <el-menu-item index="4" disabled>developing</el-menu-item>
+          <el-menu-item index="blogs">Blogs</el-menu-item>
+          <el-menu-item index="" disabled>developing</el-menu-item>
+          <el-menu-item index="" disabled>developing</el-menu-item>
         </el-menu>
       </div>
     </div>
-    <div style="margin-right: 150px">
-      <i class="el-icon-user-solid"></i>
-      <span>Zhangs.space</span>
-    </div>
-  </div>
+
 </template>
 
 <script>
+  import myPicture from './myPicture'
+
   export default {
     name: 'Topline',
     props: {},
+    components: {myPicture},
     data() {
       return {
-        activeIndex: '1',
-        activeIndex2: '1'
+        activeIndex: 'normal',
       };
     },
     methods: {
       handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+        // this.$emit('success', key)
+        console.log('/content/' + key)
+        this.$router.push('/content/' + key)
       }
     }
   }
